@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="asset/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" id="useinp" placeholder="0" disabled>
+        <input type="text" id="compout" placeholder="0" disabled>
+        <table>
+            <tr>
+                <td onclick="calcad('(')">(</td>
+                <td onclick="calcad(')')">)</td>
+                <td onclick="removech()"><i class="fa-solid fa-delete-left"></i></td>
+                <td onclick="calcad('+')" class="vari">+</td>
+            </tr>
+            <tr>
+                <td onclick="calcad('7')">7</td>
+                <td onclick="calcad('8')">8</td>
+                <td onclick="calcad('9')">9</td>
+                <td onclick="calcad('-')" class="vari">-</td>
+            </tr>
+            <tr>
+                <td onclick="calcad('4')">4</td>
+                <td onclick="calcad('5')">5</td>
+                <td onclick="calcad('6')">6</td>
+                <td onclick="calcad('*')" class="vari">*</td>
+            </tr>
+            <tr>
+                <td onclick="calcad('1')">1</td>
+                <td onclick="calcad('2')">2</td>
+                <td onclick="calcad('3')">3</td>
+                <td onclick="calcad('/')" class="vari">/</td>
+            </tr>
+            <tr>
+                <td onclick="reset()"><b>C</b></td>
+                <td onclick="calcad('0')">0</td>
+                <td onclick="calcad('.')">.</td>
+                <td class="equalbtn" onclick="execm()">=</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var tbcal = ""
+        let useinp = document.getElementById('useinp');
+        let compinp = document.getElementById('compout');
+        function calcad(value) {
+            tbcal += value;
+            useinp.value = tbcal;
+        }
+        function removech() {
+            tbcal = tbcal.substring(0, tbcal.length - 1);
+            useinp.value = tbcal;
+        }
+        function execm() {
+            if (tbcal.length == 0 || tbcal == "") {
+                alert("Butuh Input");
+                return;
+            }
+            try {
+                ans = eval(tbcal);
+                compinp.value = ans;
+            }
+            catch (err) {
+                alert("Butuh Input");
+            }
+        }
+        function reset() {
+            useinp.value = "";
+            compinp.value = "";
+            tbcal = "";
+        }
+    </script>
+
+</body>
+
+</html>
